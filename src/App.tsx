@@ -1,24 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import './styles/styles.scss';
+import Header from './components/Header';
+import { CreateForm } from './components/CreateForm';
+import { Notes } from './components/Notes';
+import { createNote } from './firebase/firebase';
+import { getDatabase, onValue, ref } from 'firebase/database';
 
 function App() {
+  const [changeTitle, setChangeTitle] = useState('');
+  const [changeContent, setChangeContent] = useState('');
+  const [data, setData] = useState({});
+
+  console.log(document);
+
+  // добавление текста в базу firebase
+  const handleCreateNote = () => {
+    if (changeTitle.length > 0 || changeContent.length > 0) {
+      createNote(changeTitle, changeContent);
+      setChangeContent('');
+      setChangeTitle('');
+    }
+  };
+
+  //  Берем данные  из firebase realtime
+  useEffect(() => {
+    const db = getDatabase();
+    const starCountRef = ref(db, 'notes/');
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      setData(data);
+    });
+  }, []);
+  const values = Object.values(data || {}).reverse();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={'app'}>
+      <Header />
+      <CreateForm
+        changeTitle={changeTitle}
+        setChangeTitle={setChangeTitle}
+        changeContent={changeContent}
+        setChangeContent={setChangeContent}
+        handleCreateNote={handleCreateNote}
+      />
+      <Notes values={values} />
     </div>
   );
 }
