@@ -1,3 +1,8 @@
+.idea
+.firebaserc
+.firebase
+.gitignore
+
 # Logs
 logs
 *.log
