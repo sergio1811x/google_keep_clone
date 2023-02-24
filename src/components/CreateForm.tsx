@@ -1,39 +1,41 @@
 import React, { FC } from 'react';
+import { useComponentVisible } from '../hook/useComponentVisible';
 
 interface ICreateForm {
-  changeTitle: string;
-  changeContent: string;
-  setChangeTitle: React.Dispatch<React.SetStateAction<string>>;
-  setChangeContent: React.Dispatch<React.SetStateAction<string>>;
+  dataTitle: string;
+  dataContent: string;
+  setDataTitle: React.Dispatch<React.SetStateAction<string>>;
+  setDataContent: React.Dispatch<React.SetStateAction<string>>;
   handleCreateNote: () => void;
 }
 
 export const CreateForm: FC<ICreateForm> = ({
-  changeTitle,
-  setChangeTitle,
-  changeContent,
-  setChangeContent,
+  dataTitle,
+  setDataTitle,
+  dataContent,
+  setDataContent,
   handleCreateNote,
 }) => {
+  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible();
+
   return (
     <div className={'create-form'}>
-      <div className={'backdrop'} />
-
-      <div className={'create-note'}>
-        <input
-          value={changeTitle}
-          type={'text'}
-          placeholder={'Title'}
-          name={'title'}
-          onChange={(e) => setChangeTitle(e.target.value)}
-        />
-
+      <div className={'create-note'} ref={ref} onClick={() => setIsComponentVisible(true)}>
+        {isComponentVisible && (
+          <input
+            value={dataTitle}
+            type={'text'}
+            placeholder={'Title'}
+            name={'title'}
+            onChange={(e) => setDataTitle(e.target.value)}
+          />
+        )}
         <p>
           <textarea
-            value={changeContent}
+            value={dataContent}
             name={'content'}
             placeholder={'Take a note...'}
-            onChange={(e) => setChangeContent(e.target.value)}
+            onChange={(e) => setDataContent(e.target.value)}
           ></textarea>
         </p>
 

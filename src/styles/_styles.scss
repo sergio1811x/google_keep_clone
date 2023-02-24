@@ -1,0 +1,238 @@
+
+.app {
+  padding: 50px 100px;
+  @include smallerThan850 {
+    padding: 50px;
+  }
+  @include smallerThan480 {
+    padding: 30px;
+  }
+  @include smallerThan330 {
+    padding: 20px;
+  }
+
+
+  .logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 30px;
+
+    .plus {
+      margin: 0 10px;
+      font-weight: 500;
+    }
+    .logo_keep {
+      width: 50px;
+    }
+    .logo_react {
+      width: 50px;
+    }
+    .logo_typescript {
+      width: 55px;
+    }
+    .logo_firebase {
+      width: 30px;
+      margin: 0 8px;
+    }
+  }
+
+
+
+  .create-note {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: $white;
+    border-radius: $radius;
+    box-shadow: $shadow;
+    z-index: 10;
+
+    input,
+    textarea {
+      width: 100%;
+      display: block;
+      border: 0;
+      outline: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      background-color: transparent;
+      &::placeholder {
+        color: rgba(0, 0, 0, 0.5);
+        font-family: $ff-roboto;
+        font-weight: 700;
+        font-size: 18px;
+      }
+    }
+
+    input {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      resize: none;
+      line-height: 1.5;
+      min-height: 5em;
+      max-height: 50vh;
+      width: 100%;
+    }
+
+    .button_add {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: 18px;
+      bottom: -18px;
+      background: $vue-green;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      line-height: 1;
+      text-align: center;
+      box-shadow: $shadow;
+      font-size: $fz-xl;
+    }
+  }
+
+  .notesBlock {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    position: relative;
+    margin: 50px auto;
+
+    .note {
+      position: relative;
+      padding: 20px;
+      background-color: $white;
+      border: 1px solid $light-grey;
+      border-radius: 8px;
+      cursor: default;
+      transition: $transition;
+      overflow-wrap: break-word;
+      text-align: justify;
+
+      &:hover,
+      &:focus {
+        box-shadow: $shadow;
+        svg {
+          opacity: 0.75;
+        }
+      }
+      h1 {
+        text-align: justify;
+        font-size: 18px;
+      }
+      p {
+        font-family: $ff-roboto;
+        white-space: pre-wrap;
+        text-align: justify;
+        margin-top: 30px;
+      }
+      svg {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        width: 25px;
+        height: 25px;
+        opacity: 50%;
+        transition: $transition;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .modal-backdrop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(229, 229, 229, 0.75);
+    z-index: 100;
+    @include smallerThan850 {
+      padding: 50px;
+    }
+    @include smallerThan480 {
+      padding: 30px;
+    }
+    @include smallerThan330 {
+      padding: 20px;
+    }
+
+    .modal {
+      @include flex-center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 25px;
+      padding-top: 30vh;
+
+      @include smallerThan850 {
+        padding-top: 25vh;
+      }
+      @include smallerThan480 {
+        padding-top: 30vh;
+      }
+      @include smallerThan330 {
+        padding-top: 40vh;
+      }
+
+      .edit-form {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        background: $white;
+        padding: 20px 20px 8px;
+        border-radius: $radius;
+        box-shadow: $shadow;
+        transition: $transition;
+
+        input {
+          margin-bottom: 20px;
+        }
+
+        .modal_footer {
+          @include flex-between;
+          .submit-button {
+            height: 36px;
+            padding: 8px 24px;
+            border-radius: 4px;
+            font-family: $ff-product;
+            font-weight: 700;
+            font-size: $fz-sm;
+
+            &:hover,
+            &:focus {
+              background-color: rgba(0, 0, 0, 0.08);
+            }
+          }
+
+          .delete-button {
+            width: 35px;
+            padding: 8px;
+            margin-left: -8px;
+            opacity: 0.5;
+            &:hover,
+            &:focus {
+              opacity: 1;
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
