@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, set, ref, push, child } from 'firebase/database';
+import { getDatabase, set, ref, push, child, onValue } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCusoip4O4GFmUNRh-iEcjH4oc__EQdA70',
@@ -22,5 +22,12 @@ export const createNote = (title, content) => {
   set(ref(db, 'notes/' + id), {
     title: title,
     content: content,
+  });
+};
+
+export const getData = () => {
+  onValue(starCountRef, (snapshot) => {
+    const res = snapshot.val();
+    return res;
   });
 };

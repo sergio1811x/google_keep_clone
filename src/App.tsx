@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/main.scss';
 import Header from './components/Header';
 import { CreateForm } from './components/CreateForm';
@@ -7,6 +7,7 @@ import { createNote } from './firebase/firebase';
 import { getDatabase, onValue, ref, update, remove } from 'firebase/database';
 import { Modal } from './components/Modal';
 import { useComponentVisible } from './hook/useComponentVisible';
+import { Footer } from './components/Footer';
 
 function App() {
   const [dataTitle, setDataTitle] = useState('');
@@ -82,6 +83,7 @@ function App() {
           handleChangeNote={handleChangeNote}
         />
       )}
+      <Footer />
     </div>
   );
 }

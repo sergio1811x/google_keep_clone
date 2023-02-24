@@ -1,6 +1,6 @@
-
 .app {
   padding: 50px 100px;
+
   @include smallerThan850 {
     padding: 50px;
   }
@@ -10,7 +10,6 @@
   @include smallerThan330 {
     padding: 20px;
   }
-
 
   .logos {
     display: flex;
@@ -36,8 +35,6 @@
       margin: 0 8px;
     }
   }
-
-
 
   .create-note {
     position: relative;
@@ -232,7 +229,17 @@
           }
         }
       }
+    }
+  }
+  .footer_block {
+    text-align: center;
 
+    span {
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+    }
+    img {
+      width: 35px;
     }
   }
 }
