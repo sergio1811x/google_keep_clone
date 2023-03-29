@@ -1,4 +1,4 @@
-Clone Google Keep
+Clone Google Keep, реализованно с использованием realtime Fitebase
 
 ## https://keep-45d61.web.app/
 
