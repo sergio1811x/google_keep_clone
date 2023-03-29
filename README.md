@@ -1,4 +1,4 @@
-Clone Google Keep, реализованно с использованием realtime Fitebase
+Clone Google Keep, реализованно с использованием realtime Fitebase, можно создавать заметки, редактировать, удалять.
 
 ## https://keep-45d61.web.app/
 
